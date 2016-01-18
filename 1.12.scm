@@ -3,8 +3,6 @@
 (define (pascal row column)
   (cond ((= 1 column) 1)
         ((= row column) 1)
-        ((> column row) 0)
-        ((< column 0) 0)
         (else (+ (pascal (- row 1) (- column 1))
                  (pascal (- row 1) column)))))
 

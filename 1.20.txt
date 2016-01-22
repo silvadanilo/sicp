@@ -1,0 +1,103 @@
+(define (gcd a b)
+  (if (= b 0)
+      a
+      (gcd b (remainder a b))))
+
+; normal-order
+- (gcd 206 40)
+  (if (= 40 0)
+    206
+    (gcd 40 (remainder 206 40)))
+
+- (gcd 40 (remainder 206 40)))
+  (if (= (remainder 206 40) 0)
+    40
+    (gcd (remainder 206 40) (remainder 40 (remainder 206 40))))
+
+  (if (= 6 0) ;first evaluation
+    40
+    (gcd (remainder 206 40) (remainder 40 (remainder 206 40))))
+
+
+- (gcd (remainder 206 40) (remainder 40 (remainder 206 40))))
+  (if (= (remainder 40 (remainder 206 40)))
+    (remainder 206 40)
+    (gcd (remainder 40 (remainder 206 40)) (remainder (remainder 206 40)
+                                                      (remainder 40 (remainder 206 40)))))
+
+  (if (= 4 0) ; second and third evaluation
+    (remainder 206 40)
+    (gcd (remainder 40 (remainder 206 40)) (remainder (remainder 206 40)
+                                                      (remainder 40 (remainder 206 40)))))
+
+- (gcd (remainder 40 (remainder 206 40)) (remainder (remainder 206 40)
+                                                    (remainder 40 (remainder 206 40)))))
+  (if (= (remainder (remainder 206 40)
+                    (remainder 40 (remainder 206 40)))
+         0)
+         (remainder 40 (remainder 206 40))
+         (gcd (remainder (remainder 206 40)
+                       (remainder 40 (remainder 206 40)))
+            (remainder (remainder 40 (remainder 206 40))
+                       (remainder (remainder 206 40)
+                                  (remainder 40 (remainder 206 40))))))
+
+  (if (= 2 0) ; 4 remainders evaluated
+      (remainder 40 (remainder 206 40))
+          (gcd (remainder (remainder 206 40)
+                              (remainder 40 (remainder 206 40)))
+                   (remainder (remainder 40 (remainder 206 40))
+                              (remainder (remainder 206 40)
+                              (remainder 40 (remainder 206 40))))))
+
+- (gcd (remainder (remainder 206 40)
+                  (remainder 40 (remainder 206 40)))
+                    (remainder (remainder 40 (remainder 206 40))
+                              (remainder (remainder 206 40)
+                              (remainder 40 (remainder 206 40))))))
+
+  (if (= (remainder (remainder 40 (remainder 206 40))
+                  (remainder (remainder 206 40)
+                             (remainder 40 (remainder 206 40)))) 0)
+    (remainder (remainder 206 40)
+               (remainder 40 (remainder 206 40)))
+    (gcd (remainder (remainder 40 (remainder 206 40))
+                    (remainder (remainder 206 40)
+                               (remainder 40 (remainder 206 40))))
+         (remainder (remainder (remainder 206 40)
+                               (remainder 40 (remainder 206 40)))
+                    (remainder (remainder 40 (remainder 206 40))
+                               (remainder (remainder 206 40)
+                                          (remainder 40
+                                                     (remainder 206 40)))))))
+
+  (if (= 0 0) ; 7th remainder evaluated
+    (remainder (remainder 206 40)
+               (remainder 40 (remainder 206 40)))
+    (gcd (remainder (remainder 40 (remainder 206 40))
+                    (remainder (remainder 206 40)
+                               (remainder 40 (remainder 206 40))))
+         (remainder (remainder (remainder 206 40)
+                               (remainder 40 (remainder 206 40)))
+                    (remainder (remainder 40 (remainder 206 40))
+                               (remainder (remainder 206 40)
+                                          (remainder 40
+                                                     (remainder 206
+                                                                40)))))))
+
+
+
+
+
+
+(gcd 206 40) ; applicative-order
+(if (= 40 0))
+  (gcd 40 6) ;first evaluation
+  (if (= 6 0))
+    (gcd 6 4) ;second evaluation
+    (if (= 4 0))
+      (gcd 4 2) ;third evaluation
+      (if (= 2 0))
+        (gcd 2 0) ;fourth evaluation
+        (if (= 0 0))
+          2

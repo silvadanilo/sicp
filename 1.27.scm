@@ -12,28 +12,53 @@
 (define (fermat-test n a)
     (= (expmod a n n) a))
 
-(define (demonstration-iter n a)
-  (cond ((= 1 a) #t)
-        (else (if (fermat-test n a)
-                  (demonstration-iter n (- a 1))
-                  #f))))
+; Outline version
+; (define (demonstration-iter n a)
+;   (cond ((= 1 a) #t)
+;         (else (if (fermat-test n (- a 1))
+;                   (demonstration-iter n (- a 1))
+;                   #f))))
 
+; (define (demonstration n)
+;   (demonstration-iter n n))
+
+; Inline version
 (define (demonstration n)
-  (demonstration-iter n n))
+  (define (demonstration-iter a)
+    (cond ((= 1 a) #t)
+          (else (if (fermat-test n (- a 1))
+                    (demonstration-iter (- a 1))
+                    #f))))
+  (demonstration-iter n))
 
-(demonstration 1) #t
-(demonstration 3) #t
-(demonstration 5) #t
-(demonstration 7) #t
-(demonstration 11) #t
-(demonstration 13) #t
-(demonstration 17) #t
-(demonstration 19) #t
-(demonstration 21) #t
+(display (demonstration 1)); #t
+(newline)
+(display (demonstration 3)); #t
+(newline)
+(display (demonstration 5)); #t
+(newline)
+(display (demonstration 7)); #t
+(newline)
+(display (demonstration 11)); #t
+(newline)
+(display (demonstration 13)); #t
+(newline)
+(display (demonstration 17)); #t
+(newline)
+(display (demonstration 19)); #t
+(newline)
+(display (demonstration 23)); #t
+(newline)
 
-(demonstration 561) #t
-(demonstration 1105) #t
-(demonstration 1729) #t
-(demonstration 2465) #t
-(demonstration 2821) #t
-(demonstration 6601) #t
+(display (demonstration 561)); #t
+(newline)
+(display (demonstration 1105)); #t
+(newline)
+(display (demonstration 1729)); #t
+(newline)
+(display (demonstration 2465)); #t
+(newline)
+(display (demonstration 2821)); #t
+(newline)
+(display (demonstration 6601)); #t
+(newline)

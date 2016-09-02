@@ -37,9 +37,6 @@
            (enumerate-interval 1 (- i 1))))
     (enumerate-interval 1 n)))
 
-(newline)
-(display (unique-pairs 7))
-
 (define (prime-sum-pairs n)
   (map make-pair-sum
        (filter prime-sum?
